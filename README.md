@@ -19,5 +19,7 @@ Fitur :
 - Pencarian Tugas 
 
 Framework Backend: Python Pyramid
+
 Frontend: React JS
+
 Database: PostgreSQL
