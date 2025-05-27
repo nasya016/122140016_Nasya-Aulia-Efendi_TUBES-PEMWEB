@@ -1,12 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 
 export default function Profile() {
   const { user, updateUser } = useAuth();
 
+  // Deklarasi hooks tanpa kondisi
   const [username, setUsername] = useState(user?.username || '');
   const [email, setEmail] = useState(user?.email || '');
   const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    if (user) {
+      setUsername(user.username);
+      setEmail(user.email);
+    }
+  }, [user]);
+
+  // Tampilkan loading jika user belum ada
+  if (!user) {
+    return (
+      <div className="container mt-4">
+        <p>Loading user data...</p>
+      </div>
+    );
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,7 +34,6 @@ export default function Profile() {
       return;
     }
 
-    // Update user di context
     updateUser({ username: username.trim(), email: email.trim() });
     setMessage('Profil berhasil diperbarui!');
   };

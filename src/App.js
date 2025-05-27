@@ -6,6 +6,7 @@ import Register from './components/Auth/Register';
 import TaskList from './components/Dashboard/TaskList';
 import TaskDetail from './components/Dashboard/TaskDetail';
 import CategoryList from './components/Dashboard/CategoryList';
+import Profile from './components/Account/Profile';  // Import Profile
 import PrivateRoute from './components/Auth/PrivateRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
@@ -22,6 +23,7 @@ function Navbar() {
         <Link className="nav-link" to="/about">Tentang</Link>
         {user && <Link className="nav-link" to="/tasks">Tugas</Link>}
         {user && <Link className="nav-link" to="/categories">Kategori</Link>}
+        {user && <Link className="nav-link" to="/profile">Akun</Link>}  {/* Link ke profil */}
         {!user && <Link className="nav-link" to="/login">Login</Link>}
         {!user && <Link className="nav-link" to="/register">Register</Link>}
       </div>
@@ -91,6 +93,14 @@ export default function App() {
             element={
               <PrivateRoute>
                 <CategoryList />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <Profile />
               </PrivateRoute>
             }
           />
