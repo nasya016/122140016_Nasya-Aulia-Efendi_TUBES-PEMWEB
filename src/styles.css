@@ -1,0 +1,160 @@
+body {
+  background-color: #f4f6f8;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+
+h1, h2, h4 {
+  color: #2c3e50;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9;
+}
+
+input.form-control, select.form-select {
+  border-radius: 4px;
+}
+
+.list-group-item.active {
+  background-color: #3498db !important;
+  border-color: #2980b9 !important;
+  color: white !important;
+}
+
+.list-group-item {
+  cursor: pointer;
+}
+
+.navbar-nav .nav-link {
+  padding: 10px 15px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  background-color: #2980b9;
+  border-radius: 4px;
+  color: white !important;
+}
+
+/* Tambahkan agar navbar seperti di screenshot */
+.navbar {
+  background-color: #212529;
+}
+
+.navbar-brand {
+  color: white !important;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.navbar-nav .nav-link {
+  color: white !important;
+  font-weight: 500;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:hover {
+  background-color: #495057;
+  border-radius: 5px;
+  color: #fff !important;
+}
+
+/* Task Form Area */
+.task-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.task-form input,
+.task-form select {
+  flex: 1;
+}
+
+/* Task Card/List */
+.task-card {
+  padding: 12px 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-card a {
+  font-weight: 500;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.task-card a:hover {
+  text-decoration: underline;
+}
+
+.task-category {
+  color: gray;
+  font-size: 0.9rem;
+  margin-left: 6px;
+}
+
+.btn-danger {
+  background-color: #e74c3c;
+  border: none;
+  padding: 5px 12px;
+}
+
+.btn-danger:hover {
+  background-color: #c0392b;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9rem;
+  color: #888;
+  border-top: 1px solid #ddd;
+  background-color: #f8f9fa;
+  margin-top: 60px;
+}
+
+.task-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-card h5 {
+  margin: 0;
+  flex-grow: 1;
+  color: #007bff;
+}
+
+.task-category {
+  font-style: italic;
+  color: gray;
+  margin: 0 10px;
+}
+
+.category-card {
+  background: #f9f9f9;
+}
