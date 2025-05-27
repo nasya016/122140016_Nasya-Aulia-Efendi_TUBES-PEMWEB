@@ -6,7 +6,6 @@ import Register from './components/Auth/Register';
 import TaskList from './components/Dashboard/TaskList';
 import TaskDetail from './components/Dashboard/TaskDetail';
 import CategoryList from './components/Dashboard/CategoryList';
-import Profile from './components/Account/Profile';
 import PrivateRoute from './components/Auth/PrivateRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
@@ -23,7 +22,6 @@ function Navbar() {
         <Link className="nav-link" to="/about">Tentang</Link>
         {user && <Link className="nav-link" to="/tasks">Tugas</Link>}
         {user && <Link className="nav-link" to="/categories">Kategori</Link>}
-        {user && <Link className="nav-link" to="/profile">Akun</Link>}
         {!user && <Link className="nav-link" to="/login">Login</Link>}
         {!user && <Link className="nav-link" to="/register">Register</Link>}
       </div>
@@ -43,12 +41,13 @@ function Home() {
     <div className="container mt-4 text-center">
       <h1 className="text-primary mb-4">Halo, Selamat Datang di TugasKu!</h1>
       <img
-      src="/image/beranda.jpg"  // <-- hapus "public" di path ini
-      alt="Beranda"
-      style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}
+        src="/image/beranda.jpg"
+        alt="Beranda"
+        style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}
       />
-
-      <p>Silahkan Login untuk menikmati fitur-fitur yang ada di TugasKu</p>
+      <p className="mt-3">
+        Silahkan Login untuk menikmati fitur-fitur yang ada di TugasKu
+      </p>
     </div>
   );
 }
@@ -58,7 +57,6 @@ function About() {
     <div className="container mt-4">
       <h2>Tentang Aplikasi</h2>
       <p>Aplikasi ini membantu kamu mengelola tugas harian dengan mudah.</p>
-      <p>Selamat Mencobaaa!!!! 🤩✨</p>
     </div>
   );
 }
@@ -93,14 +91,6 @@ export default function App() {
             element={
               <PrivateRoute>
                 <CategoryList />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <PrivateRoute>
-                <Profile />
               </PrivateRoute>
             }
           />

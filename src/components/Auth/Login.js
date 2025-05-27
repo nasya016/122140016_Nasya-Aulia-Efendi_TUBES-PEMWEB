@@ -15,7 +15,7 @@ export default function Login() {
     const storedUser = JSON.parse(localStorage.getItem('user'));
 
     if (storedUser && username === storedUser.username && password === storedUser.password) {
-      login(storedUser);
+      login(storedUser); // Kirim objek user lengkap ke context
       navigate('/tasks');
     } else {
       setError('Username atau password salah.');
@@ -27,7 +27,25 @@ export default function Login() {
       <h2>Login</h2>
       {error && <div className="alert alert-danger">{error}</div>}
       <form onSubmit={handleLogin}>
-        {/* form input username & password */}
+        <div className="mb-3">
+          <label>Username</label>
+          <input
+            type="text"
+            className="form-control"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <label>Password</label>
+          <input
+            type="password"
+            className="form-control"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+        </div>
+        <button className="btn btn-primary" type="submit">Login</button>
       </form>
       <p className="mt-3">
         Belum punya akun? <Link to="/register">Register</Link>
