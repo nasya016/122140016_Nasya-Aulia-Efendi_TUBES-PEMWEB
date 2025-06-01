@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: tugasku-backend
+Version: 0.1
+Requires-Dist: pyramid
+Requires-Dist: pyramid_jinja2
+Requires-Dist: waitress
+Requires-Dist: SQLAlchemy
+Requires-Dist: psycopg2-binary
+Dynamic: requires-dist
