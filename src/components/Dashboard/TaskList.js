@@ -1,47 +1,56 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { fetchTasks, fetchCategories, addTask, deleteTask } from '../../api/api';
 
 export default function TaskList() {
-  const [tasks, setTasks] = useState(() => {
-    const savedTasks = localStorage.getItem('tasks');
-    return savedTasks ? JSON.parse(savedTasks) : [];
-  });
-
-  const [categories, setCategories] = useState(() => {
-    const savedCategories = localStorage.getItem('categories');
-    return savedCategories ? JSON.parse(savedCategories) : [];
-  });
-
+  const [tasks, setTasks] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [newTask, setNewTask] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
-
-  // Tambahan state pencarian tugas
+  const [selectedCategory, setSelectedCategory] = useState(null); // ubah ke null
   const [searchTask, setSearchTask] = useState('');
 
-  const handleAddTask = (e) => {
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const tasksFromAPI = await fetchTasks();
+        setTasks(tasksFromAPI);
+        const categoriesFromAPI = await fetchCategories();
+        setCategories(categoriesFromAPI);
+      } catch (error) {
+        console.error('Error load data:', error);
+      }
+    }
+    loadData();
+  }, []);
+
+  const handleAddTask = async (e) => {
     e.preventDefault();
     if (newTask.trim() === '') return;
 
-    const task = {
-      id: Date.now(),
-      title: newTask.trim(),
-      category: selectedCategory || '',
-    };
-
-    const updatedTasks = [...tasks, task];
-    setTasks(updatedTasks);
-    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-    setNewTask('');
-    setSelectedCategory('');
+    try {
+      const newTaskData = {
+        title: newTask.trim(),
+        category_id: selectedCategory,  // sudah angka atau null
+      };
+      const addedTask = await addTask(newTaskData);
+      setTasks([...tasks, addedTask]);
+      setNewTask('');
+      setSelectedCategory(null);  // reset ke null
+    } catch (error) {
+      alert('Gagal menambah tugas');
+      console.error(error);
+    }
   };
 
-  const handleDeleteTask = (id) => {
-    const filteredTasks = tasks.filter(task => task.id !== id);
-    setTasks(filteredTasks);
-    localStorage.setItem('tasks', JSON.stringify(filteredTasks));
+  const handleDeleteTask = async (id) => {
+    try {
+      await deleteTask(id);
+      setTasks(tasks.filter(task => task.id !== id));
+    } catch (error) {
+      alert('Gagal menghapus tugas');
+      console.error(error);
+    }
   };
 
-  // Filter tugas berdasarkan pencarian
   const filteredTasks = tasks.filter(task =>
     task.title.toLowerCase().includes(searchTask.toLowerCase())
   );
@@ -50,7 +59,6 @@ export default function TaskList() {
     <div className="container mt-4">
       <h2>Daftar Tugas</h2>
 
-      {/* Input pencarian tugas */}
       <input
         type="text"
         className="form-control mb-3"
@@ -69,12 +77,12 @@ export default function TaskList() {
         />
         <select
           className="form-select"
-          value={selectedCategory}
-          onChange={e => setSelectedCategory(e.target.value)}
+          value={selectedCategory ?? ''}  // gunakan empty string jika null agar tidak warning
+          onChange={e => setSelectedCategory(e.target.value ? Number(e.target.value) : null)}  // ubah string ke number atau null
         >
           <option value="">Pilih Kategori (opsional)</option>
-          {categories.map((cat, index) => (
-            <option key={index} value={cat}>{cat}</option>
+          {categories.map(cat => (
+            <option key={cat.id} value={cat.id}>{cat.name}</option>
           ))}
         </select>
         <button className="btn btn-primary" type="submit">Tambah</button>
@@ -96,12 +104,10 @@ export default function TaskList() {
                   padding: '8px',
                   border: '1px solid #ddd',
                   borderRadius: '6px',
-                  backgroundColor: '#f8f9fa',
+                  backgroundColor: '#f8f9fa'
                 }}
               >
-                <Link to={`/tasks/${task.id}`} style={{ textDecoration: 'none', color: '#007bff', fontWeight: '500' }}>
-                  {task.title}
-                </Link>
+                {task.title}
               </div>
 
               <div
@@ -113,10 +119,10 @@ export default function TaskList() {
                   backgroundColor: '#e9ecef',
                   textAlign: 'center',
                   fontSize: '0.9rem',
-                  color: '#555',
+                  color: '#555'
                 }}
               >
-                {task.category || '-'}
+                {task.category?.name || '-'}
               </div>
 
               <button

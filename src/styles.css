@@ -132,29 +132,3 @@ input.form-control, select.form-select {
   background-color: #f8f9fa;
   margin-top: 60px;
 }
-
-.task-card {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.task-card h5 {
-  margin: 0;
-  flex-grow: 1;
-  color: #007bff;
-}
-
-.task-category {
-  font-style: italic;
-  color: gray;
-  margin: 0 10px;
-}
-
-.category-card {
-  background: #f9f9f9;
-}
