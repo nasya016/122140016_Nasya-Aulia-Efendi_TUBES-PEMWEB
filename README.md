@@ -1,262 +1,270 @@
-# TugasKu - Task Management Application
+# TugasKu - Aplikasi Manajemen Tugas
 
-A modern, full-stack task management application built with Python Pyramid (backend) and Next.js (frontend).
+Sebuah aplikasi manajemen tugas full-stack modern yang dibangun dengan Python Pyramid (backend) dan Next.js (frontend).
 
-## 🚀 Features
+## 🚀 Fitur
 
-- **User Authentication**: Secure JWT-based authentication
-- **Task Management**: Create, read, update, delete tasks with status tracking
-- **Category Organization**: Organize tasks by categories
-- **Search & Filter**: Advanced filtering and search capabilities
-- **Dashboard Analytics**: Visual insights into task statistics
-- **Responsive Design**: Mobile-friendly interface
-- **Real-time Updates**: Instant UI updates with optimistic updates
-- **Status Logging**: Automatic logging of task status changes
+- **Autentikasi Pengguna**: Autentikasi berbasis JWT yang aman
+- **Manajemen Tugas**: Membuat, membaca, mengubah, dan menghapus tugas dengan pelacakan status
+- **Organisasi Kategori**: Mengelompokkan tugas berdasarkan kategori
+- **Pencarian & Filter**: Kemampuan pencarian dan filter lanjutan
+- **Analitik Dashboard**: Wawasan visual tentang statistik tugas
+- **Desain Responsif**: Antarmuka ramah mobile
+- **Pembaruan Real-time**: Pembaruan UI instan dengan optimisasi
+- **Log Status**: Otomatis mencatat perubahan status tugas
 
-## 🛠️ Tech Stack
+## 🛠️ Teknologi yang Digunakan
 
 ### Backend
 - **Python 3.11+**
-- **Pyramid** - Web framework
+- **Pyramid** - Framework web
 - **SQLAlchemy** - ORM
-- **PostgreSQL** - Database
-- **JWT** - Authentication
-- **bcrypt** - Password hashing
-- **pytest** - Testing
+- **PostgreSQL** - Basis data
+- **JWT** - Autentikasi
+- **bcrypt** - Hashing password
+- **pytest** - Pengujian
 
 ### Frontend
-- **Next.js 14** - React framework
-- **TypeScript** - Type safety
-- **Bootstrap 5** - UI framework
-- **Axios** - HTTP client
-- **React Router** - Navigation
-- **React Toastify** - Notifications
+- **Next.js 14** - Framework React
+- **TypeScript** - Keamanan tipe
+- **Bootstrap 5** - Framework UI
+- **Axios** - Klien HTTP
+- **React Router** - Navigasi
+- **React Toastify** - Notifikasi
 
-## 📋 Prerequisites
+## 📋 Prasyarat
 
 - Python 3.11+
 - Node.js 18+
 - PostgreSQL 12+
 - Git
 
-## 🔧 Installation & Setup
+## 🔧 Instalasi & Konfigurasi
 
-### 1. Clone the Repository
+### 1. Clone Repositori
 
-\`\`\`bash
+```bash
 git clone <repository-url>
 cd tugasku
-\`\`\`
+```
 
-### 2. Backend Setup
+### 2. Setup Backend
 
-\`\`\`bash
+```bash
 cd tugasku-backend
 
-# Create virtual environment
+# Buat lingkungan virtual
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  # Di Windows gunakan: venv\Scripts\activate
 
-# Install dependencies
+# Instal dependensi
 pip install -r requirements.txt
 
-# Install the package in development mode
+# Instal paket dalam mode pengembangan
 pip install -e .
 
-# Setup environment variables
+# Konfigurasi variabel lingkungan
 cp .env.example .env
-# Edit .env with your database credentials
+# Edit file .env dengan kredensial basis data Anda
 
-# Initialize database
+# Inisialisasi basis data
 python -c "from tugasku_backend.database import init_db; init_db()"
 
-# Run the server
+# Jalankan server
 pserve development.ini --reload
-\`\`\`
+```
 
-### 3. Frontend Setup
+### 3. Setup Frontend
 
-\`\`\`bash
+```bash
 cd tugasku-frontend
 
-# Install dependencies
-npm install
+# Instal dependensi
+npm install --legacy-peer-deps
 
-# Setup environment variables
+# Konfigurasi variabel lingkungan
 cp .env.example .env.local
-# Edit .env.local with your API URL
+# Edit .env.local dengan URL API Anda
 
-# Run the development server
+# Jalankan server pengembangan
 npm run dev
-\`\`\`
+```
 
-### 4. Database Setup
+### 4. Setup Basis Data
 
-\`\`\`sql
--- Create database
+```sql
+-- Buat basis data
 CREATE DATABASE tugasku_db;
 CREATE USER tugasku_user WITH PASSWORD 'your_password';
 GRANT ALL PRIVILEGES ON DATABASE tugasku_db TO tugasku_user;
-\`\`\`
+```
 
-## 🐳 Docker Setup
+## 🐳 Setup Docker
 
-### Using Docker Compose
+### Menggunakan Docker Compose
 
-\`\`\`bash
-# Clone the repository
+```bash
+# Clone repositori
 git clone <repository-url>
 cd tugasku
 
-# Start all services
+# Jalankan semua layanan
 docker-compose up -d
 
-# View logs
+# Lihat log
 docker-compose logs -f
 
-# Stop services
+# Hentikan layanan
 docker-compose down
-\`\`\`
+```
 
-The application will be available at:
+Aplikasi akan tersedia di:
 - Frontend: http://localhost:3000
 - Backend API: http://localhost:6543
 
-## 🧪 Testing
+## 🧪 Pengujian
 
-### Backend Tests
+### Pengujian Backend
 
-\`\`\`bash
+```bash
 cd tugasku-backend
 
-# Run all tests
+# Jalankan semua tes
 pytest
 
-# Run with coverage
+# Jalankan tes dengan laporan cakupan
 pytest --cov=tugasku_backend --cov-report=html
 
-# Run specific test file
+# Jalankan tes pada file tertentu
 pytest tests/test_auth.py
-\`\`\`
+```
 
-### Frontend Tests
+### Pengujian Frontend
 
-\`\`\`bash
+```bash
 cd tugasku-frontend
 
-# Run tests
+# Jalankan tes
 npm test
 
-# Run tests with coverage
+# Jalankan tes dengan laporan cakupan
 npm test -- --coverage
-\`\`\`
+```
 
-## 📚 API Documentation
+## 📚 Dokumentasi API
 
-### Authentication Endpoints
+### Endpoint Autentikasi
 
-- `POST /api/auth/register` - User registration
-- `POST /api/auth/login` - User login
-- `GET /api/auth/profile` - Get user profile
+- `POST /api/auth/register` - Registrasi pengguna
+- `POST /api/auth/login` - Login pengguna
+- `GET /api/auth/profile` - Mendapatkan profil pengguna
 
-### Task Endpoints
+### Endpoint Tugas
 
-- `GET /api/tasks` - Get tasks (with filtering)
-- `POST /api/tasks` - Create task
-- `GET /api/tasks/{id}` - Get task by ID
-- `PUT /api/tasks/{id}` - Update task
-- `DELETE /api/tasks/{id}` - Delete task
+- `GET /api/tasks` - Mendapatkan daftar tugas (dengan filter)
+- `POST /api/tasks` - Membuat tugas baru
+- `GET /api/tasks/{id}` - Mendapatkan detail tugas
+- `PUT /api/tasks/{id}` - Memperbarui tugas
+- `DELETE /api/tasks/{id}` - Menghapus tugas
 
-### Category Endpoints
+### Endpoint Kategori
 
-- `GET /api/categories` - Get all categories
-- `POST /api/categories` - Create category
-- `PUT /api/categories/{id}` - Update category
-- `DELETE /api/categories/{id}` - Delete category
+- `GET /api/categories` - Mendapatkan semua kategori
+- `POST /api/categories` - Membuat kategori baru
+- `PUT /api/categories/{id}` - Memperbarui kategori
+- `DELETE /api/categories/{id}` - Menghapus kategori
 
-### Dashboard Endpoint
+### Endpoint Dashboard
 
-- `GET /api/dashboard` - Get dashboard statistics
+- `GET /api/dashboard` - Mendapatkan statistik dashboard
 
-## 🔒 Security Features
+## 🔒 Fitur Keamanan
 
-- JWT token-based authentication
-- Password hashing with bcrypt
-- CORS protection
-- Input validation and sanitization
-- SQL injection prevention with SQLAlchemy ORM
-- XSS protection
+- Autentikasi berbasis token JWT
+- Hashing password menggunakan bcrypt
+- Perlindungan CORS
+- Validasi dan sanitasi input
+- Pencegahan SQL injection menggunakan ORM SQLAlchemy
+- Perlindungan XSS
 
-## 📱 Frontend Features
+## 📱 Fitur Frontend
 
-- Responsive design for all screen sizes
-- Real-time form validation
-- Loading states and error handling
-- Toast notifications
-- Optimistic UI updates
+- Desain responsif untuk semua ukuran layar
+- Validasi form real-time
+- State loading dan penanganan error
+- Notifikasi toast
+- Pembaruan UI optimis
 - Error boundaries
-- TypeScript for type safety
+- TypeScript untuk keamanan tipe
 
-## 🏗️ Project Structure
+## 🏗️ Struktur Proyek
 
-\`\`\`
+```
 tugasku/
 ├── tugasku-backend/
 │   ├── tugasku_backend/
-│   │   ├── models/          # Database models
-│   │   ├── views/           # API endpoints
-│   │   ├── middleware/      # Custom middleware
-│   │   ├── utils/           # Utility functions
-│   │   ├── database/        # Database configuration
-│   │   └── config.py        # Configuration
-│   ├── tests/               # Backend tests
-│   ├── requirements.txt     # Python dependencies
-│   └── setup.py            # Package setup
+│   │   ├── models/          # Model basis data
+│   │   ├── views/           # Endpoint API
+│   │   ├── middleware/      # Middleware kustom
+│   │   ├── utils/           # Fungsi utilitas
+│   │   ├── database/        # Konfigurasi basis data
+│   │   └── config.py        # Konfigurasi
+│   ├── tests/               # Tes backend
+│   ├── requirements.txt     # Dependensi Python
+│   └── setup.py            # Konfigurasi paket
 ├── tugasku-frontend/
 │   ├── app/
-│   │   ├── components/      # React components
-│   │   ├── hooks/           # Custom hooks
-│   │   ├── lib/             # Utilities and API
-│   │   ├── types/           # TypeScript types
-│   │   └── context/         # React context
-│   ├── public/              # Static assets
-│   └── package.json         # Node dependencies
-└── docker-compose.yml       # Docker configuration
-\`\`\`
+│   │   ├── components/      # Komponen React
+│   │   ├── hooks/           # Hooks kustom
+│   │   ├── lib/             # Utilitas dan API
+│   │   ├── types/           # Tipe TypeScript
+│   │   └── context/         # Context React
+│   ├── public/              # Aset statis
+│   └── package.json         # Dependensi Node
+└── docker-compose.yml       # Konfigurasi Docker
+```
 
 ## 🚀 Deployment
 
-### Backend Deployment
+### Deployment Backend
 
-1. Set environment variables for production
-2. Use a production WSGI server (already configured with Waitress)
-3. Setup PostgreSQL database
-4. Configure reverse proxy (nginx)
+1. Atur variabel lingkungan untuk produksi
+2. Gunakan server WSGI produksi (sudah dikonfigurasi dengan Waitress)
+3. Siapkan basis data PostgreSQL
+4. Konfigurasikan reverse proxy (nginx)
 
-### Frontend Deployment
+### Deployment Frontend
 
-1. Build the application: `npm run build`
-2. Deploy to Vercel, Netlify, or any static hosting
-3. Set environment variables for production API URL
+1. Bangun aplikasi: `npm run build`
+2. Deploy ke Vercel, Netlify, atau layanan hosting statis lainnya
+3. Atur variabel lingkungan untuk URL API produksi
 
-## 🤝 Contributing
+## 🤝 Kontribusi
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Make your changes and add tests
-4. Commit your changes: `git commit -am 'Add feature'`
-5. Push to the branch: `git push origin feature-name`
-6. Submit a pull request
+1. Fork repositori
+2. Buat cabang fitur: `git checkout -b feature-name`
+3. Lakukan perubahan dan tambahkan tes
+4. Commit perubahan: `git commit -am 'Add feature'`
+5. Push ke cabang: `git push origin feature-name`
+6. Kirim pull request
 
-## 📄 License
+## 📄 Lisensi
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+Proyek ini dilisensikan di bawah MIT License - lihat file LICENSE untuk detailnya.
 
-## 👥 Authors
+## 👥 Penulis
 
-- **Your Name** - Initial work
+- **Your Name** - Pekerjaan awal
 
-## 🙏 Acknowledgments
+## 🙏 Ucapan Terima Kasih
 
-- Built for Web Programming course final project
-- Thanks to the open-source community for the amazing tools and libraries
+- Dibuat untuk proyek akhir mata kuliah Pemrograman Web
+- Terima kasih kepada komunitas open-source atas alat dan library yang luar biasa
+
+## 📇 Kredit
+
+**Nama** : Nasya Aulia Efendi  
+**NIM** : 122140016  
+**Kelas** : Pemrograman Web RA  
+**Program Studi** : Teknik Informatika  
+**Institusi** : Institut Teknologi Sumatera
