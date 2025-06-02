@@ -1,0 +1,35 @@
+Metadata-Version: 2.4
+Name: tugasku-backend
+Version: 1.0.0
+Summary: TugasKu Task Management Backend API
+Home-page: https://github.com/tugasku/tugasku-backend
+Author: TugasKu Team
+Author-email: team@tugasku.com
+Keywords: web pyramid pylons task management api
+Classifier: Programming Language :: Python
+Classifier: Framework :: Pyramid
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Application
+Requires-Dist: pyramid>=2.0.2
+Requires-Dist: pyramid_jinja2>=2.10
+Requires-Dist: waitress>=2.1.2
+Requires-Dist: SQLAlchemy>=2.0.23
+Requires-Dist: psycopg2-binary>=2.9.9
+Requires-Dist: bcrypt>=4.1.2
+Requires-Dist: PyJWT>=2.8.0
+Requires-Dist: alembic>=1.13.1
+Provides-Extra: testing
+Requires-Dist: pytest>=7.4.3; extra == "testing"
+Requires-Dist: pytest-cov>=4.1.0; extra == "testing"
+Requires-Dist: webtest>=3.0.0; extra == "testing"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: summary
+
+A modern task management backend built with Python Pyramid
